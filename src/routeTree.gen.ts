@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as ProdutosRouteImport } from './routes/produtos'
 import { Route as ProducaoRouteImport } from './routes/producao'
+import { Route as ControleRouteImport } from './routes/controle'
 import { Route as ComercialRouteImport } from './routes/comercial'
 import { Route as IndexRouteImport } from './routes/index'
 
@@ -22,6 +23,11 @@ const ProdutosRoute = ProdutosRouteImport.update({
 const ProducaoRoute = ProducaoRouteImport.update({
   id: '/producao',
   path: '/producao',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ControleRoute = ControleRouteImport.update({
+  id: '/controle',
+  path: '/controle',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ComercialRoute = ComercialRouteImport.update({
@@ -38,12 +44,14 @@ const IndexRoute = IndexRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/comercial': typeof ComercialRoute
+  '/controle': typeof ControleRoute
   '/producao': typeof ProducaoRoute
   '/produtos': typeof ProdutosRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/comercial': typeof ComercialRoute
+  '/controle': typeof ControleRoute
   '/producao': typeof ProducaoRoute
   '/produtos': typeof ProdutosRoute
 }
@@ -51,20 +59,22 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/comercial': typeof ComercialRoute
+  '/controle': typeof ControleRoute
   '/producao': typeof ProducaoRoute
   '/produtos': typeof ProdutosRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/comercial' | '/producao' | '/produtos'
+  fullPaths: '/' | '/comercial' | '/controle' | '/producao' | '/produtos'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/comercial' | '/producao' | '/produtos'
-  id: '__root__' | '/' | '/comercial' | '/producao' | '/produtos'
+  to: '/' | '/comercial' | '/controle' | '/producao' | '/produtos'
+  id: '__root__' | '/' | '/comercial' | '/controle' | '/producao' | '/produtos'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   ComercialRoute: typeof ComercialRoute
+  ControleRoute: typeof ControleRoute
   ProducaoRoute: typeof ProducaoRoute
   ProdutosRoute: typeof ProdutosRoute
 }
@@ -83,6 +93,13 @@ declare module '@tanstack/react-router' {
       path: '/producao'
       fullPath: '/producao'
       preLoaderRoute: typeof ProducaoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/controle': {
+      id: '/controle'
+      path: '/controle'
+      fullPath: '/controle'
+      preLoaderRoute: typeof ControleRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/comercial': {
@@ -105,6 +122,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   ComercialRoute: ComercialRoute,
+  ControleRoute: ControleRoute,
   ProducaoRoute: ProducaoRoute,
   ProdutosRoute: ProdutosRoute,
 }
