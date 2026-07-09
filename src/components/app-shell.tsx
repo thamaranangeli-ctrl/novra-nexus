@@ -20,7 +20,8 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
-const nav = [
+type NavItem = { to: string; label: string; icon: typeof LayoutDashboard; exact?: boolean };
+const nav: NavItem[] = [
   { to: "/", label: "Dashboard", icon: LayoutDashboard, exact: true },
   { to: "/produtos", label: "Produtos", icon: Package },
   { to: "/producao", label: "Produção", icon: Factory },
@@ -28,7 +29,7 @@ const nav = [
   { to: "/controle", label: "Controle", icon: BarChart3 },
   { to: "/roadmap", label: "Roadmap", icon: KanbanSquare },
   { to: "/configuracoes", label: "Configurações", icon: Settings },
-] as const;
+];
 
 export function AppShell({ children }: { children: ReactNode }) {
   const { theme, toggle } = useTheme();
