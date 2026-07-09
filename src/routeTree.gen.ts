@@ -9,12 +9,18 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as RoadmapRouteImport } from './routes/roadmap'
 import { Route as ProdutosRouteImport } from './routes/produtos'
 import { Route as ProducaoRouteImport } from './routes/producao'
 import { Route as ControleRouteImport } from './routes/controle'
 import { Route as ComercialRouteImport } from './routes/comercial'
 import { Route as IndexRouteImport } from './routes/index'
 
+const RoadmapRoute = RoadmapRouteImport.update({
+  id: '/roadmap',
+  path: '/roadmap',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ProdutosRoute = ProdutosRouteImport.update({
   id: '/produtos',
   path: '/produtos',
@@ -47,6 +53,7 @@ export interface FileRoutesByFullPath {
   '/controle': typeof ControleRoute
   '/producao': typeof ProducaoRoute
   '/produtos': typeof ProdutosRoute
+  '/roadmap': typeof RoadmapRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -54,6 +61,7 @@ export interface FileRoutesByTo {
   '/controle': typeof ControleRoute
   '/producao': typeof ProducaoRoute
   '/produtos': typeof ProdutosRoute
+  '/roadmap': typeof RoadmapRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -62,13 +70,27 @@ export interface FileRoutesById {
   '/controle': typeof ControleRoute
   '/producao': typeof ProducaoRoute
   '/produtos': typeof ProdutosRoute
+  '/roadmap': typeof RoadmapRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/comercial' | '/controle' | '/producao' | '/produtos'
+  fullPaths:
+    | '/'
+    | '/comercial'
+    | '/controle'
+    | '/producao'
+    | '/produtos'
+    | '/roadmap'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/comercial' | '/controle' | '/producao' | '/produtos'
-  id: '__root__' | '/' | '/comercial' | '/controle' | '/producao' | '/produtos'
+  to: '/' | '/comercial' | '/controle' | '/producao' | '/produtos' | '/roadmap'
+  id:
+    | '__root__'
+    | '/'
+    | '/comercial'
+    | '/controle'
+    | '/producao'
+    | '/produtos'
+    | '/roadmap'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -77,10 +99,18 @@ export interface RootRouteChildren {
   ControleRoute: typeof ControleRoute
   ProducaoRoute: typeof ProducaoRoute
   ProdutosRoute: typeof ProdutosRoute
+  RoadmapRoute: typeof RoadmapRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/roadmap': {
+      id: '/roadmap'
+      path: '/roadmap'
+      fullPath: '/roadmap'
+      preLoaderRoute: typeof RoadmapRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/produtos': {
       id: '/produtos'
       path: '/produtos'
@@ -125,6 +155,7 @@ const rootRouteChildren: RootRouteChildren = {
   ControleRoute: ControleRoute,
   ProducaoRoute: ProducaoRoute,
   ProdutosRoute: ProdutosRoute,
+  RoadmapRoute: RoadmapRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
