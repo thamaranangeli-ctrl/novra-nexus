@@ -109,7 +109,7 @@ export const fichasComercialQuery = () =>
     queryFn: async () => {
       const { data, error } = await supabase
         .from("ficha_comercial")
-        .select("*, produtos(id,sku,nome,foto_url,categoria,peso_g,tempo_impressao_min,cores_disponiveis,necessita_suportes,status)")
+        .select("*, produtos(id,sku,nome,foto_url,categoria,peso_g,tempo_impressao_min,cor_principal,cor_secundaria,necessita_suportes,status)")
         .order("updated_at", { ascending: false });
       if (error) throw error;
       return data;
