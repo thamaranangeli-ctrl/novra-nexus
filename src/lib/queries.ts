@@ -103,6 +103,19 @@ export const fichasProducaoQuery = () =>
     },
   });
 
+export const fichasComercialQuery = () =>
+  queryOptions({
+    queryKey: ["fichas-comercial"],
+    queryFn: async () => {
+      const { data, error } = await supabase
+        .from("ficha_comercial")
+        .select("*, produtos(id,sku,nome,foto_url,categoria,peso_g,tempo_impressao_min,cor_principal,cor_secundaria,necessita_suportes,status)")
+        .order("updated_at", { ascending: false });
+      if (error) throw error;
+      return data;
+    },
+  });
+
 export const arquivosProdutoQuery = (produtoId: string | null) =>
   queryOptions({
     queryKey: ["arquivos", produtoId],
