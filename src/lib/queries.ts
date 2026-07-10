@@ -90,6 +90,35 @@ export const historicoQuery = () =>
     },
   });
 
+export const fichasProducaoQuery = () =>
+  queryOptions({
+    queryKey: ["fichas-producao"],
+    queryFn: async () => {
+      const { data, error } = await supabase
+        .from("ficha_producao")
+        .select("*, produtos(id,sku,nome,foto_url,peso_g,tempo_impressao_min,necessita_suportes,status)")
+        .order("updated_at", { ascending: false });
+      if (error) throw error;
+      return data;
+    },
+  });
+
+export const arquivosProdutoQuery = (produtoId: string | null) =>
+  queryOptions({
+    queryKey: ["arquivos", produtoId],
+    queryFn: async () => {
+      if (!produtoId) return [];
+      const { data, error } = await supabase
+        .from("produto_arquivos")
+        .select("*")
+        .eq("produto_id", produtoId)
+        .order("created_at", { ascending: false });
+      if (error) throw error;
+      return data;
+    },
+    enabled: !!produtoId,
+  });
+
 export const dashboardStatsQuery = () =>
   queryOptions({
     queryKey: ["dashboard-stats"],
