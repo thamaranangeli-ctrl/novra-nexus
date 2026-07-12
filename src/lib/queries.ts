@@ -10,7 +10,43 @@ export type FichaProducao = Database["public"]["Tables"]["ficha_producao"]["Row"
 export type ControleEstoque = Database["public"]["Tables"]["controle_estoque"]["Row"];
 export type Movimentacao = Database["public"]["Tables"]["movimentacoes"]["Row"];
 export type Tarefa = Database["public"]["Tables"]["roadmap_tarefas"]["Row"];
+export type TarefaInsert = Database["public"]["Tables"]["roadmap_tarefas"]["Insert"];
+export type TarefaUpdate = Database["public"]["Tables"]["roadmap_tarefas"]["Update"];
+export type ChecklistItem = Database["public"]["Tables"]["roadmap_checklist"]["Row"];
+export type Anexo = Database["public"]["Tables"]["roadmap_anexos"]["Row"];
 export type Historico = Database["public"]["Tables"]["historico_alteracoes"]["Row"];
+
+export const checklistQuery = (tarefaId: string | null) =>
+  queryOptions({
+    queryKey: ["checklist", tarefaId],
+    queryFn: async () => {
+      if (!tarefaId) return [];
+      const { data, error } = await supabase
+        .from("roadmap_checklist")
+        .select("*")
+        .eq("tarefa_id", tarefaId)
+        .order("ordem", { ascending: true });
+      if (error) throw error;
+      return data;
+    },
+    enabled: !!tarefaId,
+  });
+
+export const anexosTarefaQuery = (tarefaId: string | null) =>
+  queryOptions({
+    queryKey: ["anexos-tarefa", tarefaId],
+    queryFn: async () => {
+      if (!tarefaId) return [];
+      const { data, error } = await supabase
+        .from("roadmap_anexos")
+        .select("*")
+        .eq("tarefa_id", tarefaId)
+        .order("created_at", { ascending: false });
+      if (error) throw error;
+      return data;
+    },
+    enabled: !!tarefaId,
+  });
 
 export const produtosQuery = () =>
   queryOptions({
