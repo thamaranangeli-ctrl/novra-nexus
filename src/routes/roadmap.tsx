@@ -162,17 +162,18 @@ function RoadmapPage() {
       <PageHeader
         title="Roadmap"
         description="Organize o desenvolvimento em Kanban — arraste os cards, adicione checklists e anexos."
-      >
-        <Button
-          onClick={() => {
-            setEditing(null);
-            setOpenDialog(true);
-          }}
-          className="gap-2"
-        >
-          <Plus className="w-4 h-4" /> Nova tarefa
-        </Button>
-      </PageHeader>
+        actions={
+          <Button
+            onClick={() => {
+              setEditing(null);
+              setOpenDialog(true);
+            }}
+            className="gap-2"
+          >
+            <Plus className="w-4 h-4" /> Nova tarefa
+          </Button>
+        }
+      />
 
       {tarefas.length === 0 && (
         <div className="rounded-2xl border border-dashed border-border p-10 text-center">
