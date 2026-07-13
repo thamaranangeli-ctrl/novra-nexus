@@ -73,6 +73,93 @@ export type Database = {
           },
         ]
       }
+      custos_fixos: {
+        Row: {
+          categoria: string | null
+          created_at: string
+          id: string
+          nome: string
+          observacoes: string | null
+          updated_at: string
+          valor_mensal: number
+        }
+        Insert: {
+          categoria?: string | null
+          created_at?: string
+          id?: string
+          nome: string
+          observacoes?: string | null
+          updated_at?: string
+          valor_mensal?: number
+        }
+        Update: {
+          categoria?: string | null
+          created_at?: string
+          id?: string
+          nome?: string
+          observacoes?: string | null
+          updated_at?: string
+          valor_mensal?: number
+        }
+        Relationships: []
+      }
+      embalagens: {
+        Row: {
+          created_at: string
+          fornecedor: string | null
+          id: string
+          nome: string
+          observacoes: string | null
+          tipo: string | null
+          updated_at: string
+          valor_unitario: number
+        }
+        Insert: {
+          created_at?: string
+          fornecedor?: string | null
+          id?: string
+          nome: string
+          observacoes?: string | null
+          tipo?: string | null
+          updated_at?: string
+          valor_unitario?: number
+        }
+        Update: {
+          created_at?: string
+          fornecedor?: string | null
+          id?: string
+          nome?: string
+          observacoes?: string | null
+          tipo?: string | null
+          updated_at?: string
+          valor_unitario?: number
+        }
+        Relationships: []
+      }
+      energia_config: {
+        Row: {
+          created_at: string
+          id: string
+          observacoes: string | null
+          updated_at: string
+          valor_kwh: number
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          observacoes?: string | null
+          updated_at?: string
+          valor_kwh?: number
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          observacoes?: string | null
+          updated_at?: string
+          valor_kwh?: number
+        }
+        Relationships: []
+      }
       ficha_comercial: {
         Row: {
           created_at: string
@@ -218,6 +305,54 @@ export type Database = {
           },
         ]
       }
+      filamentos: {
+        Row: {
+          cor: string | null
+          created_at: string
+          data_compra: string | null
+          fornecedor: string | null
+          id: string
+          marca: string | null
+          material: string | null
+          nome: string
+          observacoes: string | null
+          peso_rolo_g: number
+          updated_at: string
+          valor_frete: number
+          valor_pago: number
+        }
+        Insert: {
+          cor?: string | null
+          created_at?: string
+          data_compra?: string | null
+          fornecedor?: string | null
+          id?: string
+          marca?: string | null
+          material?: string | null
+          nome: string
+          observacoes?: string | null
+          peso_rolo_g?: number
+          updated_at?: string
+          valor_frete?: number
+          valor_pago?: number
+        }
+        Update: {
+          cor?: string | null
+          created_at?: string
+          data_compra?: string | null
+          fornecedor?: string | null
+          id?: string
+          marca?: string | null
+          material?: string | null
+          nome?: string
+          observacoes?: string | null
+          peso_rolo_g?: number
+          updated_at?: string
+          valor_frete?: number
+          valor_pago?: number
+        }
+        Relationships: []
+      }
       historico_alteracoes: {
         Row: {
           acao: string
@@ -258,6 +393,75 @@ export type Database = {
             referencedColumns: ["id"]
           },
         ]
+      }
+      impressoras: {
+        Row: {
+          created_at: string
+          id: string
+          modelo: string | null
+          nome: string
+          observacoes: string | null
+          potencia_watts: number
+          updated_at: string
+          valor_compra: number
+          vida_util_horas: number
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          modelo?: string | null
+          nome: string
+          observacoes?: string | null
+          potencia_watts?: number
+          updated_at?: string
+          valor_compra?: number
+          vida_util_horas?: number
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          modelo?: string | null
+          nome?: string
+          observacoes?: string | null
+          potencia_watts?: number
+          updated_at?: string
+          valor_compra?: number
+          vida_util_horas?: number
+        }
+        Relationships: []
+      }
+      marketplaces: {
+        Row: {
+          comissao_percent: number
+          created_at: string
+          id: string
+          nome: string
+          observacoes: string | null
+          taxa_fixa: number
+          taxa_variavel_percent: number
+          updated_at: string
+        }
+        Insert: {
+          comissao_percent?: number
+          created_at?: string
+          id?: string
+          nome: string
+          observacoes?: string | null
+          taxa_fixa?: number
+          taxa_variavel_percent?: number
+          updated_at?: string
+        }
+        Update: {
+          comissao_percent?: number
+          created_at?: string
+          id?: string
+          nome?: string
+          observacoes?: string | null
+          taxa_fixa?: number
+          taxa_variavel_percent?: number
+          updated_at?: string
+        }
+        Relationships: []
       }
       movimentacoes: {
         Row: {
@@ -336,6 +540,89 @@ export type Database = {
             foreignKeyName: "produto_arquivos_produto_id_fkey"
             columns: ["produto_id"]
             isOneToOne: false
+            referencedRelation: "produtos"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      produto_custos: {
+        Row: {
+          created_at: string
+          custos_extras: number
+          desperdicio_percent: number
+          embalagem_id: string | null
+          filamento_id: string | null
+          frete_estimado: number
+          id: string
+          impressora_id: string | null
+          lucro_desejado_percent: number
+          observacoes: string | null
+          peso_peca_g: number
+          produto_id: string
+          tempo_acabamento_min: number
+          tempo_impressao_min: number
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          custos_extras?: number
+          desperdicio_percent?: number
+          embalagem_id?: string | null
+          filamento_id?: string | null
+          frete_estimado?: number
+          id?: string
+          impressora_id?: string | null
+          lucro_desejado_percent?: number
+          observacoes?: string | null
+          peso_peca_g?: number
+          produto_id: string
+          tempo_acabamento_min?: number
+          tempo_impressao_min?: number
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          custos_extras?: number
+          desperdicio_percent?: number
+          embalagem_id?: string | null
+          filamento_id?: string | null
+          frete_estimado?: number
+          id?: string
+          impressora_id?: string | null
+          lucro_desejado_percent?: number
+          observacoes?: string | null
+          peso_peca_g?: number
+          produto_id?: string
+          tempo_acabamento_min?: number
+          tempo_impressao_min?: number
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "produto_custos_embalagem_id_fkey"
+            columns: ["embalagem_id"]
+            isOneToOne: false
+            referencedRelation: "embalagens"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "produto_custos_filamento_id_fkey"
+            columns: ["filamento_id"]
+            isOneToOne: false
+            referencedRelation: "filamentos"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "produto_custos_impressora_id_fkey"
+            columns: ["impressora_id"]
+            isOneToOne: false
+            referencedRelation: "impressoras"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "produto_custos_produto_id_fkey"
+            columns: ["produto_id"]
+            isOneToOne: true
             referencedRelation: "produtos"
             referencedColumns: ["id"]
           },

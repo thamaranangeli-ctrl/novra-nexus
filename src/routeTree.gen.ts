@@ -15,6 +15,9 @@ import { Route as ProducaoRouteImport } from './routes/producao'
 import { Route as ControleRouteImport } from './routes/controle'
 import { Route as ComercialRouteImport } from './routes/comercial'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as FinanceiroSimuladorRouteImport } from './routes/financeiro.simulador'
+import { Route as FinanceiroMarketplacesRouteImport } from './routes/financeiro.marketplaces'
+import { Route as FinanceiroCustosRouteImport } from './routes/financeiro.custos'
 
 const RoadmapRoute = RoadmapRouteImport.update({
   id: '/roadmap',
@@ -46,6 +49,21 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const FinanceiroSimuladorRoute = FinanceiroSimuladorRouteImport.update({
+  id: '/financeiro/simulador',
+  path: '/financeiro/simulador',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FinanceiroMarketplacesRoute = FinanceiroMarketplacesRouteImport.update({
+  id: '/financeiro/marketplaces',
+  path: '/financeiro/marketplaces',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FinanceiroCustosRoute = FinanceiroCustosRouteImport.update({
+  id: '/financeiro/custos',
+  path: '/financeiro/custos',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -54,6 +72,9 @@ export interface FileRoutesByFullPath {
   '/producao': typeof ProducaoRoute
   '/produtos': typeof ProdutosRoute
   '/roadmap': typeof RoadmapRoute
+  '/financeiro/custos': typeof FinanceiroCustosRoute
+  '/financeiro/marketplaces': typeof FinanceiroMarketplacesRoute
+  '/financeiro/simulador': typeof FinanceiroSimuladorRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -62,6 +83,9 @@ export interface FileRoutesByTo {
   '/producao': typeof ProducaoRoute
   '/produtos': typeof ProdutosRoute
   '/roadmap': typeof RoadmapRoute
+  '/financeiro/custos': typeof FinanceiroCustosRoute
+  '/financeiro/marketplaces': typeof FinanceiroMarketplacesRoute
+  '/financeiro/simulador': typeof FinanceiroSimuladorRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -71,6 +95,9 @@ export interface FileRoutesById {
   '/producao': typeof ProducaoRoute
   '/produtos': typeof ProdutosRoute
   '/roadmap': typeof RoadmapRoute
+  '/financeiro/custos': typeof FinanceiroCustosRoute
+  '/financeiro/marketplaces': typeof FinanceiroMarketplacesRoute
+  '/financeiro/simulador': typeof FinanceiroSimuladorRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -81,8 +108,20 @@ export interface FileRouteTypes {
     | '/producao'
     | '/produtos'
     | '/roadmap'
+    | '/financeiro/custos'
+    | '/financeiro/marketplaces'
+    | '/financeiro/simulador'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/comercial' | '/controle' | '/producao' | '/produtos' | '/roadmap'
+  to:
+    | '/'
+    | '/comercial'
+    | '/controle'
+    | '/producao'
+    | '/produtos'
+    | '/roadmap'
+    | '/financeiro/custos'
+    | '/financeiro/marketplaces'
+    | '/financeiro/simulador'
   id:
     | '__root__'
     | '/'
@@ -91,6 +130,9 @@ export interface FileRouteTypes {
     | '/producao'
     | '/produtos'
     | '/roadmap'
+    | '/financeiro/custos'
+    | '/financeiro/marketplaces'
+    | '/financeiro/simulador'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -100,6 +142,9 @@ export interface RootRouteChildren {
   ProducaoRoute: typeof ProducaoRoute
   ProdutosRoute: typeof ProdutosRoute
   RoadmapRoute: typeof RoadmapRoute
+  FinanceiroCustosRoute: typeof FinanceiroCustosRoute
+  FinanceiroMarketplacesRoute: typeof FinanceiroMarketplacesRoute
+  FinanceiroSimuladorRoute: typeof FinanceiroSimuladorRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -146,6 +191,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/financeiro/simulador': {
+      id: '/financeiro/simulador'
+      path: '/financeiro/simulador'
+      fullPath: '/financeiro/simulador'
+      preLoaderRoute: typeof FinanceiroSimuladorRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/financeiro/marketplaces': {
+      id: '/financeiro/marketplaces'
+      path: '/financeiro/marketplaces'
+      fullPath: '/financeiro/marketplaces'
+      preLoaderRoute: typeof FinanceiroMarketplacesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/financeiro/custos': {
+      id: '/financeiro/custos'
+      path: '/financeiro/custos'
+      fullPath: '/financeiro/custos'
+      preLoaderRoute: typeof FinanceiroCustosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -156,6 +222,9 @@ const rootRouteChildren: RootRouteChildren = {
   ProducaoRoute: ProducaoRoute,
   ProdutosRoute: ProdutosRoute,
   RoadmapRoute: RoadmapRoute,
+  FinanceiroCustosRoute: FinanceiroCustosRoute,
+  FinanceiroMarketplacesRoute: FinanceiroMarketplacesRoute,
+  FinanceiroSimuladorRoute: FinanceiroSimuladorRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
