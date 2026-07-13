@@ -107,3 +107,30 @@ export function AppShell({ children }: { children: ReactNode }) {
     </div>
   );
 }
+
+function renderNavLink(item: NavItem, pathname: string) {
+  const active = item.exact ? pathname === item.to : pathname.startsWith(item.to);
+  const Icon = item.icon;
+  return (
+    <Link
+      key={item.to}
+      to={item.to as never}
+      className={cn(
+        "group relative flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-colors",
+        active
+          ? "bg-sidebar-accent text-sidebar-accent-foreground"
+          : "text-sidebar-foreground/70 hover:bg-sidebar-accent/60 hover:text-sidebar-foreground",
+      )}
+    >
+      {active && (
+        <motion.span
+          layoutId="sidebar-active"
+          className="absolute inset-y-1 left-0 w-0.5 rounded-full bg-primary"
+          transition={{ type: "spring", stiffness: 400, damping: 30 }}
+        />
+      )}
+      <Icon className="h-4 w-4" />
+      {item.label}
+    </Link>
+  );
+}
