@@ -11,6 +11,9 @@ import {
   Sun,
   Search,
   Sparkles,
+  Wallet,
+  Store,
+  Calculator,
 } from "lucide-react";
 import { motion } from "framer-motion";
 import { useState, type ReactNode } from "react";
@@ -28,6 +31,13 @@ const nav: NavItem[] = [
   { to: "/comercial", label: "Comercial", icon: ShoppingCart },
   { to: "/controle", label: "Controle", icon: BarChart3 },
   { to: "/roadmap", label: "Roadmap", icon: KanbanSquare },
+];
+const navFinanceiro: NavItem[] = [
+  { to: "/financeiro/custos", label: "Custos Gerais", icon: Wallet },
+  { to: "/financeiro/marketplaces", label: "Marketplaces", icon: Store },
+  { to: "/financeiro/simulador", label: "Simulador de Preços", icon: Calculator },
+];
+const navSecundario: NavItem[] = [
   { to: "/configuracoes", label: "Configurações", icon: Settings },
 ];
 
