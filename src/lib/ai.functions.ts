@@ -55,9 +55,10 @@ Formato JSON esperado:
       body: JSON.stringify({
         model: "google/gemini-2.5-flash",
         messages: [
-          { role: "system", content: "Você retorna apenas JSON válido, sem cercas de código." },
+          { role: "system", content: "Você retorna apenas JSON válido, sem cercas de código, sem comentários." },
           { role: "user", content: prompt },
         ],
+        response_format: { type: "json_object" },
       }),
     });
 
@@ -65,12 +66,22 @@ Formato JSON esperado:
       const txt = await res.text();
       if (res.status === 429) throw new Error("Limite de requisições atingido. Tente novamente em instantes.");
       if (res.status === 402) throw new Error("Créditos de IA esgotados. Adicione créditos no workspace.");
-      throw new Error(`Falha na IA (${res.status}): ${txt.slice(0, 200)}`);
+      throw new Error(`Falha na IA (${res.status}): ${txt.slice(0, 300)}`);
     }
 
     const json = await res.json();
     const content: string = json.choices?.[0]?.message?.content ?? "";
-    const cleaned = content.replace(/^```(?:json)?/i, "").replace(/```$/i, "").trim();
+    const trimmed = content.trim();
+    // strip possible ``` fences anywhere and isolate JSON object
+    let cleaned = trimmed
+      .replace(/^```(?:json)?\s*/i, "")
+      .replace(/\s*```$/i, "")
+      .trim();
+    const first = cleaned.indexOf("{");
+    const last = cleaned.lastIndexOf("}");
+    if (first !== -1 && last !== -1 && last > first) {
+      cleaned = cleaned.slice(first, last + 1);
+    }
     try {
       return JSON.parse(cleaned) as {
         titulo_shopee: string;
@@ -81,6 +92,7 @@ Formato JSON esperado:
         tags: string[];
       };
     } catch {
+      console.error("IA resposta bruta:", content);
       throw new Error("Resposta da IA não foi JSON válido");
     }
   });
