@@ -213,7 +213,9 @@ function FichaEditor({ ficha }: { ficha: FichaRow }) {
           cores,
           suportes: !!ficha.produtos.necessita_suportes,
           preco: Number(form.preco ?? 0) || null,
-          marketplace: (form.marketplace as "shopee" | "mercadolivre" | "ambos") ?? "ambos",
+          marketplace: (["shopee", "mercadolivre", "ambos"].includes(form.marketplace as string)
+            ? (form.marketplace as "shopee" | "mercadolivre" | "ambos")
+            : "ambos"),
           observacoes: undefined,
         },
       });
