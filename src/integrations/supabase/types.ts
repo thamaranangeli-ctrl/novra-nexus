@@ -631,73 +631,214 @@ export type Database = {
       produtos: {
         Row: {
           acabamento: string | null
+          arquivado: boolean
           categoria: string | null
+          concorrencia_importados: string | null
           cor_principal: string | null
           cor_secundaria: string | null
           created_at: string
+          custo_desgaste: number | null
+          custo_embalagem: number | null
+          custo_energia: number | null
+          custo_pla: number | null
+          data_ultima_pesquisa: string | null
           descricao: string | null
+          diferencial_outro: string | null
+          diferencial_tipos: string[] | null
           dificuldade: number | null
           embalagem: string | null
+          fornecedor_licenca: string | null
           foto_url: string | null
+          frete_subsidiado: number | null
+          galeria_imagens: string[] | null
           id: string
           linha: string | null
+          link_amazon: string | null
           link_makerworld: string | null
+          link_mercadolivre: string | null
           link_printables: string | null
+          link_shopee: string | null
+          link_tiktok: string | null
+          lucro_liquido: number | null
+          lucro_por_hora: number | null
+          material: string | null
           necessita_suportes: boolean | null
           nome: string
+          nota_concorrencia: number | null
+          nota_devolucao: number | null
+          nota_escalabilidade: number | null
+          nota_facilidade: number | null
+          nota_final: number | null
+          nota_giro: number | null
+          nota_kits: number | null
+          nota_margem: number | null
+          nota_procura: number | null
+          nota_tempo_maquina: number | null
+          nota_tendencia: number | null
           observacoes: string | null
+          observacoes_internas: string | null
           peso_g: number | null
+          possui_diferencial: boolean | null
+          potencial_giro: string | null
+          preco_amazon: number | null
+          preco_mercadolivre: number | null
+          preco_novra_sugerido: number | null
+          preco_shopee: number | null
+          preco_tiktok: number | null
           prioridade: Database["public"]["Enums"]["prioridade"]
+          quantidade_pla_g: number | null
+          recorrencia: string | null
+          saturacao: string | null
           sku: string
           status: Database["public"]["Enums"]["produto_status"]
+          stl_autor: string | null
+          stl_fonte: string | null
+          stl_licenca_comercial: boolean | null
+          stl_link: string | null
+          stl_observacoes: string | null
+          stl_tipo_licenca: string | null
           tempo_impressao_min: number | null
           updated_at: string
         }
         Insert: {
           acabamento?: string | null
+          arquivado?: boolean
           categoria?: string | null
+          concorrencia_importados?: string | null
           cor_principal?: string | null
           cor_secundaria?: string | null
           created_at?: string
+          custo_desgaste?: number | null
+          custo_embalagem?: number | null
+          custo_energia?: number | null
+          custo_pla?: number | null
+          data_ultima_pesquisa?: string | null
           descricao?: string | null
+          diferencial_outro?: string | null
+          diferencial_tipos?: string[] | null
           dificuldade?: number | null
           embalagem?: string | null
+          fornecedor_licenca?: string | null
           foto_url?: string | null
+          frete_subsidiado?: number | null
+          galeria_imagens?: string[] | null
           id?: string
           linha?: string | null
+          link_amazon?: string | null
           link_makerworld?: string | null
+          link_mercadolivre?: string | null
           link_printables?: string | null
+          link_shopee?: string | null
+          link_tiktok?: string | null
+          lucro_liquido?: number | null
+          lucro_por_hora?: number | null
+          material?: string | null
           necessita_suportes?: boolean | null
           nome: string
+          nota_concorrencia?: number | null
+          nota_devolucao?: number | null
+          nota_escalabilidade?: number | null
+          nota_facilidade?: number | null
+          nota_final?: number | null
+          nota_giro?: number | null
+          nota_kits?: number | null
+          nota_margem?: number | null
+          nota_procura?: number | null
+          nota_tempo_maquina?: number | null
+          nota_tendencia?: number | null
           observacoes?: string | null
+          observacoes_internas?: string | null
           peso_g?: number | null
+          possui_diferencial?: boolean | null
+          potencial_giro?: string | null
+          preco_amazon?: number | null
+          preco_mercadolivre?: number | null
+          preco_novra_sugerido?: number | null
+          preco_shopee?: number | null
+          preco_tiktok?: number | null
           prioridade?: Database["public"]["Enums"]["prioridade"]
+          quantidade_pla_g?: number | null
+          recorrencia?: string | null
+          saturacao?: string | null
           sku: string
           status?: Database["public"]["Enums"]["produto_status"]
+          stl_autor?: string | null
+          stl_fonte?: string | null
+          stl_licenca_comercial?: boolean | null
+          stl_link?: string | null
+          stl_observacoes?: string | null
+          stl_tipo_licenca?: string | null
           tempo_impressao_min?: number | null
           updated_at?: string
         }
         Update: {
           acabamento?: string | null
+          arquivado?: boolean
           categoria?: string | null
+          concorrencia_importados?: string | null
           cor_principal?: string | null
           cor_secundaria?: string | null
           created_at?: string
+          custo_desgaste?: number | null
+          custo_embalagem?: number | null
+          custo_energia?: number | null
+          custo_pla?: number | null
+          data_ultima_pesquisa?: string | null
           descricao?: string | null
+          diferencial_outro?: string | null
+          diferencial_tipos?: string[] | null
           dificuldade?: number | null
           embalagem?: string | null
+          fornecedor_licenca?: string | null
           foto_url?: string | null
+          frete_subsidiado?: number | null
+          galeria_imagens?: string[] | null
           id?: string
           linha?: string | null
+          link_amazon?: string | null
           link_makerworld?: string | null
+          link_mercadolivre?: string | null
           link_printables?: string | null
+          link_shopee?: string | null
+          link_tiktok?: string | null
+          lucro_liquido?: number | null
+          lucro_por_hora?: number | null
+          material?: string | null
           necessita_suportes?: boolean | null
           nome?: string
+          nota_concorrencia?: number | null
+          nota_devolucao?: number | null
+          nota_escalabilidade?: number | null
+          nota_facilidade?: number | null
+          nota_final?: number | null
+          nota_giro?: number | null
+          nota_kits?: number | null
+          nota_margem?: number | null
+          nota_procura?: number | null
+          nota_tempo_maquina?: number | null
+          nota_tendencia?: number | null
           observacoes?: string | null
+          observacoes_internas?: string | null
           peso_g?: number | null
+          possui_diferencial?: boolean | null
+          potencial_giro?: string | null
+          preco_amazon?: number | null
+          preco_mercadolivre?: number | null
+          preco_novra_sugerido?: number | null
+          preco_shopee?: number | null
+          preco_tiktok?: number | null
           prioridade?: Database["public"]["Enums"]["prioridade"]
+          quantidade_pla_g?: number | null
+          recorrencia?: string | null
+          saturacao?: string | null
           sku?: string
           status?: Database["public"]["Enums"]["produto_status"]
+          stl_autor?: string | null
+          stl_fonte?: string | null
+          stl_licenca_comercial?: boolean | null
+          stl_link?: string | null
+          stl_observacoes?: string | null
+          stl_tipo_licenca?: string | null
           tempo_impressao_min?: number | null
           updated_at?: string
         }
@@ -841,6 +982,11 @@ export type Database = {
         | "concluido"
         | "pausado"
         | "descontinuado"
+        | "ideia"
+        | "pesquisando"
+        | "testando"
+        | "aprovado"
+        | "publicado"
       tipo_movimentacao:
         | "entrada"
         | "saida"
@@ -985,6 +1131,11 @@ export const Constants = {
         "concluido",
         "pausado",
         "descontinuado",
+        "ideia",
+        "pesquisando",
+        "testando",
+        "aprovado",
+        "publicado",
       ],
       tipo_movimentacao: [
         "entrada",
