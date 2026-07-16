@@ -964,12 +964,188 @@ export type Database = {
           },
         ]
       }
+      venda_itens: {
+        Row: {
+          created_at: string
+          custo_desgaste: number
+          custo_embalagem: number
+          custo_energia: number
+          custo_pla: number
+          custo_unitario_total: number
+          desconto: number
+          id: string
+          nome_snapshot: string
+          peso_g: number
+          produto_id: string | null
+          quantidade: number
+          sku_snapshot: string
+          subtotal: number
+          tempo_impressao_min: number
+          valor_unitario: number
+          venda_id: string
+        }
+        Insert: {
+          created_at?: string
+          custo_desgaste?: number
+          custo_embalagem?: number
+          custo_energia?: number
+          custo_pla?: number
+          custo_unitario_total?: number
+          desconto?: number
+          id?: string
+          nome_snapshot?: string
+          peso_g?: number
+          produto_id?: string | null
+          quantidade?: number
+          sku_snapshot?: string
+          subtotal?: number
+          tempo_impressao_min?: number
+          valor_unitario?: number
+          venda_id: string
+        }
+        Update: {
+          created_at?: string
+          custo_desgaste?: number
+          custo_embalagem?: number
+          custo_energia?: number
+          custo_pla?: number
+          custo_unitario_total?: number
+          desconto?: number
+          id?: string
+          nome_snapshot?: string
+          peso_g?: number
+          produto_id?: string | null
+          quantidade?: number
+          sku_snapshot?: string
+          subtotal?: number
+          tempo_impressao_min?: number
+          valor_unitario?: number
+          venda_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "venda_itens_produto_id_fkey"
+            columns: ["produto_id"]
+            isOneToOne: false
+            referencedRelation: "produtos"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "venda_itens_venda_id_fkey"
+            columns: ["venda_id"]
+            isOneToOne: false
+            referencedRelation: "vendas"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      vendas: {
+        Row: {
+          cliente_cidade: string | null
+          cliente_nome: string | null
+          cliente_telefone: string | null
+          codigo_rastreio: string | null
+          comissao_percent: number
+          comissao_valor: number
+          created_at: string
+          custo_total: number
+          data_venda: string
+          desconto_total: number
+          frete_cliente: number
+          frete_novra: number
+          id: string
+          lucro_bruto: number
+          lucro_liquido: number
+          lucro_por_hora: number
+          margem_percent: number
+          marketplace: string
+          numero_pedido: string | null
+          observacoes: string | null
+          receita_bruta: number
+          receita_liquida: number
+          status: Database["public"]["Enums"]["venda_status"]
+          subtotal_produtos: number
+          taxa_fixa: number
+          taxa_variavel_percent: number
+          tempo_total_min: number
+          updated_at: string
+        }
+        Insert: {
+          cliente_cidade?: string | null
+          cliente_nome?: string | null
+          cliente_telefone?: string | null
+          codigo_rastreio?: string | null
+          comissao_percent?: number
+          comissao_valor?: number
+          created_at?: string
+          custo_total?: number
+          data_venda?: string
+          desconto_total?: number
+          frete_cliente?: number
+          frete_novra?: number
+          id?: string
+          lucro_bruto?: number
+          lucro_liquido?: number
+          lucro_por_hora?: number
+          margem_percent?: number
+          marketplace: string
+          numero_pedido?: string | null
+          observacoes?: string | null
+          receita_bruta?: number
+          receita_liquida?: number
+          status?: Database["public"]["Enums"]["venda_status"]
+          subtotal_produtos?: number
+          taxa_fixa?: number
+          taxa_variavel_percent?: number
+          tempo_total_min?: number
+          updated_at?: string
+        }
+        Update: {
+          cliente_cidade?: string | null
+          cliente_nome?: string | null
+          cliente_telefone?: string | null
+          codigo_rastreio?: string | null
+          comissao_percent?: number
+          comissao_valor?: number
+          created_at?: string
+          custo_total?: number
+          data_venda?: string
+          desconto_total?: number
+          frete_cliente?: number
+          frete_novra?: number
+          id?: string
+          lucro_bruto?: number
+          lucro_liquido?: number
+          lucro_por_hora?: number
+          margem_percent?: number
+          marketplace?: string
+          numero_pedido?: string | null
+          observacoes?: string | null
+          receita_bruta?: number
+          receita_liquida?: number
+          status?: Database["public"]["Enums"]["venda_status"]
+          subtotal_produtos?: number
+          taxa_fixa?: number
+          taxa_variavel_percent?: number
+          tempo_total_min?: number
+          updated_at?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      aplicar_venda_item: {
+        Args: {
+          p_produto: string
+          p_qtd: number
+          p_sign: number
+          p_subtotal: number
+        }
+        Returns: undefined
+      }
     }
     Enums: {
       kanban_coluna: "backlog" | "em_andamento" | "concluido"
@@ -994,6 +1170,14 @@ export type Database = {
         | "perda"
         | "ajuste"
         | "producao"
+      venda_status:
+        | "recebida"
+        | "em_producao"
+        | "impressa"
+        | "embalada"
+        | "enviada"
+        | "entregue"
+        | "cancelada"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -1144,6 +1328,15 @@ export const Constants = {
         "perda",
         "ajuste",
         "producao",
+      ],
+      venda_status: [
+        "recebida",
+        "em_producao",
+        "impressa",
+        "embalada",
+        "enviada",
+        "entregue",
+        "cancelada",
       ],
     },
   },
